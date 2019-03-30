@@ -1,0 +1,38 @@
+<?php
+require_once("classes/mainClass.php");
+$main = new mainClass();
+?>
+<!DOCTYPE html>
+<html>
+<head lang="pt">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/estiloindex.css">
+    <script type="text/javascript" src="js/jscript.js"></script>
+    <title>Poker PB</title>
+</head>
+<body>
+<?php /* if(isset($_GET['erro'])=='1') { echo "<div class='erro'>E-mail ou senha errada.</div>";}*/?>
+
+<a class="logoclub" href="#" onclick='apresentaLogin()'> <img id="logo" src="img/logopokerindex.png"></a>
+<a class="logoclub" href="#" onclick='apresentaLogin()'> <img id="logoalfa" src="img/logopokerindexalfa.png"></a>
+
+<div id="foot">
+    <form name="autoriza" action="<? $main->autorizarAcesso()?>" method="post">
+    <!--<input type="text" name="email" placeholder="email"/> --><br/><br/></br>
+    <select name="user">
+    	<option>Edno</option>
+	<option>Eduardo</option>
+    	<option>Fabio</option>
+    	<option>Gustavo</option>
+    	<option>Jairo</option>
+    	<option>Lauro</option>
+    	<option>Vinicius</option>
+    	<option>Willian</option>
+    </select><br/><br/>
+    <input type="password" name="senha" placeholder="senha"/><br/><br/><br/>
+    <input class="sub" type="submit" name="autoriza" value="ENTRAR">
+  </form>
+</div>
+</body>
+</html>
