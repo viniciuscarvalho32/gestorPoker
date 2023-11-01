@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head lang="pt">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+    <link rel="stylesheet" type="text/css" href="css/estilohome.css">
+    <script src="js/jquery-1.12.0.min.js"></script>
+    <script src="js/jquery.mobile-1.4.5.min.js"></script>
+
+    <title> Financeiro </title>
+    <style>
+
+        td {
+            border-bottom: solid 0.7px grey;
+        }
+        .tabdadostot {
+            float: right;
+        }
+
+    </style>
+</head>
+<body>
+
+<div data-role="page" class="paget">
+
+    <header data-role="header" data-position="fixed">
+        <div class="fundoCab">
+            <div class="linkmenu">
+                <a href="#painelarea" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets ui-btn-icon-notext "></a>
+            </div>
+            <div class="fotolog">
+                <form method="post" action="auxjogadores.php">
+                    <input type="image" value="<?=$idjog?>" name="cadjog" src="img/foto<?=$arrayfoto[$idjog];?>.jpg"/>
+                </form>
+            </div>
+            <div class="titCab">
+                Rating
+            </div>
+            <div class="logocab">
+                <img src="img/fundocab.png">
+            </div>
+        </div>
+    </header>
+    <section>
+        <div data-role="panel" id="painelarea" data-display="overlay" data-position="left">
+            <ul>
+                <li><a data-icon="home" href="home.html" data-role="button">home</a>
+                <li><a data-icon="search" href="jogos.html" data-role="button">jogos</a>
+                <li><a data-icon="edit" href="saldofinanceiro.html" data-role="button">financeiro</a>
+                <li><a data-icon="calendar" href="#" data-role="button">agenda</li></a>
+                <li><a data-icon="gear" href="#" data-role="button">configurações</li></a>
+                <li><a data-icon="power" href="index.html" data-role="button">Sair</li></a>
+            </ul>
+        </div>
+        <div class="cad">
+            <table class="tab">
+                <tr class="tabcab">
+                    <td></td>
+                    <td>Conta</td>
+                    <td>Saldo</td>
+                </tr>
+                <?php
+               $sql = @mysql_query("SELECT * FROM contafinanceira");
+               while($linha = mysql_fetch_array($sql)) {
+               	     $saldotot = $saldotot + $linha['saldo'];		
+                     echo "<tr  class='tabdados'>
+                <td><a href='extratofin.php?id=$linha[0]' data-transition='pop'><img src='img/banco$linha[0].png' name='$linha[0]'> </a></td>
+                <td>".$linha['nome']."</td>
+                <td> R$ ".$linha['saldo']."</td>
+                </tr>";
+                }
+                echo "<tr class='tabdados'>
+                <td></td>
+                <td>Total</td>
+                <td>R$ $saldotot</td>
+            </tr>";
+
+                ?>
+            </table>
+        </div>
+    </section>
+    <footer data-role="footer" data-position="fixed">
+    </footer>
+</div>
+
+</body>
+</html>

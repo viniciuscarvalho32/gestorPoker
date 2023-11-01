@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head lang="pt">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+    <script src="js/jquery-1.12.0.min.js"></script>
+    <script src="js/jquery.mobile-1.4.5.min.js"></script>
+    <title>Extrato Conta</title>
+
+    <style>
+        .tab {
+            position: relative;
+            margin:auto;
+            width: 100%;
+        }
+        .tabcab {
+            background-color: #929292;
+            font-weight: bold;
+        }
+        .cabtot td {
+            font-weight: bold;
+            color: #008943;
+        }
+    </style>
+</head>
+<body>
+<div data-role="page" class="paget">
+    <header data-role="header" data-position="fixed">
+
+        <div class="titulo">
+            <form method="post" action="auxjogadores.php">
+                <input type="image" class="fotolog" value="<?=$idjog?>" name="cadjog" src="img/foto<?=$arrayfoto[$idjog];?>.jpg"/>
+            </form>
+            <?=$apelido?>
+            <img class="fundocab" src="img/fundocab.png">
+            <h1> Extrato </h1>
+        </div>
+
+        <nav data-role="navbar" data-theme="b">
+            <ul>
+                <li><a href="home.html" data-role="button" data-transition='slide' data-icon="home"> Home </a></li>
+                <li><a href="saldofinanceiro.html" data-role="button" data-transition='slide' data-icon="search"> Saldo </a></li>
+                <li><a href="addmovfin.html" data-role="button" data-transition='slide' data-icon="plus"> Lançamento </a></li>
+
+            </ul>
+        </nav>
+    </header>
+    <div class="cad">
+
+        <table class="tab">
+            <tr class="tabcab">
+                <td>Data</td>
+                <td>Obs Movimentação</td>
+                <td>Tipo</td>
+                <td>Valor</td>
+            </tr>
+
+            <?php
+
+            $idconta = $_GET['id'];
+
+            $sqlresult = @mysql_query("SELECT * FROM movfinanceira where conta='$idconta'");
+            while ($row = @mysql_fetch_assoc($sqlresult, MYSQL_ASSOC)) {
+                $idmov = $row['id'];
+                $datmov = $row['datmov'];
+                $obsmov = $row['obsmov'];
+                $tipmov = $row['tipmov'];
+                $vlrmov = $row['vlrmov'];
+                
+                $datconvert = date('d/m/Y', strtotime($datmov));
+
+                echo "<tr>
+            <td>$datconvert</td>
+            <td>$obsmov</td>
+            <td>$tipmov</td>
+            <td>$vlrmov</td>
+            <td><a href='paineldeletemov.php?idmov=$idmov&idconta=$idconta' class='btndel' data-role='button' data-transition='slide' data-icon='delete'></a></td>
+            </tr>";
+            }
+            ?>
+        </table>
+    </div>
+    <footer data-role="footer" data-position="fixed" data-theme="b"><aside data-role="navbar" data-grid="d">
+    </footer>
+</div>
+</body>
+</html>

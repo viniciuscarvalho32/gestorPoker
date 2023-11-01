@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head lang="pt">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+    <script src="js/jquery-1.12.0.min.js"></script>
+    <script src="js/jquery.mobile-1.4.5.min.js"></script>
+    <title>Parcialr</title>
+</head>
+
+<style>
+
+</style>
+
+<body>
+<div data-role="page" class="paget">
+    <header data-role="header" data-position="fixed">
+
+        <form method="post" action="auxjogadores.php">
+            <input type="image" class="fotolog" value="<?=$idjog?>" name="cadjog" src="img/foto<?=$arrayfoto[$idjog];?>.jpg"/>
+        </form>
+        <?=$apelido?>
+        <img class="fundocab" src="img/fundocab.png">
+        <h1> Parcial </h1>
+
+
+        <nav data-role="navbar" data-theme="b">
+            <ul>
+                <li><a href="home.html" data-role="button" data-transition='slide' data-icon="home"> Home </a></li>
+                <li><a href="home.html" data-role="button" data-transition='slide' data-icon="search"> Jogadores </a></li>
+                <li><a href="jogos.html" data-role="button" data-transition='slide' data-icon="search"> Jogos </a></li>
+            </ul>
+        </nav>
+
+    </header>
+    <div class="cad">
+
+        <?php
+        $idjog = $_GET['id'];
+        
+        $sqljogador = @mysql_query("SELECT * FROM jogador where id = '$idjog'");
+        $rowjog = @mysql_fetch_assoc($sqljogador, MYSQL_ASSOC);
+        
+        echo "<h2>".$rowjog['nome']."</h2>";
+        ?>
+        <table class="tab">
+            <tr class="tabcab">
+                <td>Data</td>
+                <td>Cash</td>
+                <td>Score</td>
+            </tr>
+            <?php
+
+            $cashtot = 0;
+            $scoretot = 0;
+
+            $sqlresult = @mysql_query("SELECT * FROM jogos where idjogador = '$idjog' and datjog > '2017-01-01' order by datjog desc");
+            while ($row = @mysql_fetch_assoc($sqlresult, MYSQL_ASSOC)) {
+            $idjogo = $row['id'];
+            $datjog = $row['datjog'];
+
+            $datconvert = date('d/m/Y', strtotime($datjog));
+            $cash = $row['cash'];
+            $score = $row['score'];
+
+            $cashtot = $cashtot + $cash;
+            $scoretot = $scoretot + $score;
+
+            echo "<tr>
+            <td> $datconvert </td>
+            <td> $cash </td>
+            <td> $score </td>";
+            if($tipusu === 'Administrador') {
+            echo "<td><a href='editarjogos.php?idjogo=$idjogo' data-role='button' data-icon='edit' data-transition='pop'> </a></td>";
+            }
+            echo "</tr>";
+            }
+            echo "<tr class='cabtot'>
+            <td> Total:</td>
+            <td> $cashtot </td>
+            <td> $scoretot </td>
+        </tr>"
+            ?>            </table>
+    </div>
+
+    <footer data-role="footer" data-position="fixed" data-theme="b"><aside data-role="navbar" data-grid="d">
+
+    </footer>
+</div>
+
+</body>
+</html>

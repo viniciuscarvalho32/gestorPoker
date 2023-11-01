@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head lang="pt">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+    <script src="js/jquery-1.12.0.min.js"></script>
+    <script src="js/jquery.mobile-1.4.5.min.js"></script>
+    <title>Encerrar Jogo</title>
+
+    <style>
+        .field {
+            text-align: center;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<div data-role="page" class="paget">
+    <header data-role="header" data-position="fixed">
+
+        <div class="titulo">
+
+            <form method="post" action="auxjogadores.php">
+                <input type="image" class="fotolog" value="<?=$idjog?>" name="cadjog" src="img/foto<?=$arrayfoto[$idjog];?>.jpg"/>
+            </form>
+            <?=$apelido?>
+            <h1>Encerrar Jogo</h1>
+        </div>
+
+
+        <nav data-role="navbar" data-theme="b">
+            <ul>
+                <li><a href="home.html" data-role="button" data-transition='pop' data-icon="home"> Home </a></li>
+                <li><a href="home.html" data-role="button" data-transition='pop' data-icon="search"> Jogadores </a></li>
+                <li><a href="jogos.html" data-role="button" data-transition='pop' data-icon="search"> Jogos </a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <form  method="post" action="painelresultados.php" enctype="multipart/form-data">
+        <div class="cad">
+            <?php if(isset($_GET['erro']) == '1') { echo "<div class='erro'>Apenas o campo Observação pode ficar em branco!</div>"; } ?>
+        <fieldset class="field">
+            <legend>Data do Jogo</legend>
+            <input type="date" name="datjog"/>
+        </fieldset>
+        <fieldset class="field">
+            <legend>Valor em Fichas R$</legend>
+            <input type="text" name="cash" placeholder="Valor Fichas R$"/>
+        </fieldset>
+        <fieldset>
+            <legend>Colocação</legend>
+            <input type="number" max="6" min="1" name="colocacao"/>
+        </fieldset>
+        <fieldset>
+            <legend class="field">Observação</legend>
+            <textarea rows="10" cols="40" name="obsjogo" maxlength="500" placeholder="Observação"></textarea>
+        </fieldset>
+        <input type="submit" name="encerrar" value="Encerrar">
+</div>
+</form>
+
+
+<footer data-role="footer" data-position="fixed" data-theme="b"><aside data-role="navbar" data-grid="d">
+
+</footer>
+</div>
+
+</body>
+</html>

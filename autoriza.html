@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Teste </title>
+</head>
+
+<body>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+
+    var dado1="";
+    var dado2="";
+    var dado3="";
+
+    function buscar() {
+        $.getJSON('http://127.0.0.1:8080/projects/pokerPB/www/autoriza.php',
+
+                function(data) {
+                    dado1 = data[0].Id;
+                    dado2 = data[0].Email;
+                    dado3 = data[0].Senha;
+                }
+        );
+    }
+    header("Location:home.html");
+
+</script>
+</body>
+</html>

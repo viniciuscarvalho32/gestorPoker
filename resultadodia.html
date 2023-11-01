@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head lang="pt">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+    <script src="js/jquery-1.12.0.min.js"></script>
+    <script src="js/jquery.mobile-1.4.5.min.js"></script>
+    <title>Resultado dia</title>
+    <style>
+        .field {
+            text-align: center;
+            font-weight: bold;
+        }
+        .erro {
+            color: red;
+        }
+        .tab {
+            position: relative;
+            margin: 30px, auto;
+        }
+        .tabcab {
+            background-color: #7f7b7b;
+        }
+    </style>
+</head>
+<body>
+<div data-role="page" class="paget">
+    <header data-role="header" data-position="fixed">
+        <header data-role="header" data-position="fixed">
+            <div class="fundoCab">
+                <div class="linkmenu">
+                    <a href="#painelarea" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets ui-btn-icon-notext "></a>
+                </div>
+                <div class="fotolog">
+                    <form method="post" action="auxjogadores.php">
+                        <input type="image" value="<?=$idjog?>" name="cadjog" src="img/foto<?=$arrayfoto[$idjog];?>.jpg"/>
+                    </form>
+                </div>
+                <div class="titCab">
+                    Rating
+                </div>
+                <div class="logocab">
+                    <img src="img/fundocab.png">
+                </div>
+            </div>
+        </header>
+        <section>
+            <div data-role="panel" id="painelarea" data-display="overlay" data-position="left">
+                <ul>
+                    <li><a data-icon="home" href="home.html" data-role="button">home</a>
+                    <li><a data-icon="search" href="jogos.html" data-role="button">jogos</a>
+                    <li><a data-icon="edit" href="saldofinanceiro.html" data-role="button">financeiro</a>
+                    <li><a data-icon="calendar" href="#" data-role="button">agenda</li></a>
+                    <li><a data-icon="gear" href="#" data-role="button">configurações</li></a>
+                    <li><a data-icon="power" href="index.html" data-role="button">Sair</li></a>
+                </ul>
+            </div>
+            <form  method="post" action="painelresultados.php" enctype="multipart/form-data">
+                <div class="cad">
+
+
+
+
+                    <?php
+            $idjog = $_GET['id'];
+            $datjog = $_GET['data'];
+
+            $sqlresult = @mysql_query("SELECT * FROM jogos where datjog = '$datjog' and idjogador = '$idjog'");
+            $row = @mysql_fetch_assoc($sqlresult, MYSQL_ASSOC);
+            $cash = $row['cash'];
+            $score = $row['score'];
+            $sqljogador = @mysql_query("SELECT * FROM jogador where id='$idjog'");
+            $rowjog = @mysql_fetch_array($sqljogador, MYSQL_NUM);
+            $nomejog = $rowjog[1];
+            ?>
+
+                    <table class="tab">
+                        <tr class="tabcab">
+                            <td>Data</td>
+                            <td>ID</td>
+                            <td>Nome</td>
+                            <td>Cash</td>
+                            <td>Score</td>
+                        </tr>
+                        <tr>
+                            <td><?php echo date('d/m/Y', strtotime($datjog)) ?></td>
+                            <td><?php echo $idjog ?></td>
+                            <td><?php echo $nomejog ?></td>
+                            <td><?php echo $cash ?></td>
+                            <td><?php echo $score ?></td>
+                        </tr>
+                    </table>
+
+
+
+                </div>
+            </form>
+        </section>
+        <footer data-role="footer" data-position="fixed" data-theme="b"><aside data-role="navbar" data-grid="d">
+
+        </footer>
+</div>
+
+</body>
+</html>

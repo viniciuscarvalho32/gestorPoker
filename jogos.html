@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head lang="pt">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/estilohome.css">
+    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+    <script src="js/jquery-1.12.0.min.js"></script>
+    <script src="js/jquery.mobile-1.4.5.min.js"></script>
+
+    <title>Poker PB</title>
+</head>
+<body>
+
+<div data-role="page" class="paget">
+    <header data-role="header" data-position="fixed">
+        <div class="fundoCab">
+            <div class="linkmenu">
+                <a href="#painelarea" class="ui-btn ui-shadow ui-corner-all ui-icon-bars ui-btn-icon-notext "></a> menu
+            </div>
+            <div class="fotolog">
+                <form method="post" action="auxjogadores.php">
+                    <input type="image" value="<?=$idjog?>" name="cadjog" src="img/foto<?=$arrayfoto[$idjog];?>.jpg"/>
+                </form>
+            </div>
+            <div class="titCab">
+                Rating
+            </div>
+            <div class="logocab">
+                <img src="img/fundocab.png">
+            </div>
+        </div>
+    </header>
+
+
+    <section>
+        <div data-role="panel" id="painelarea" data-display="overlay" data-position="left">
+            <ul>
+                <li><a data-icon="search" href="home.php" data-role="button">home</a>
+                    <?php if($tipusu === 'Administrador') {
+                        echo "<li><a data-icon='search' href='cadjogos.php' data-role='button'>Cad. jogos</a>";
+                    }
+                    ?>
+                <li><a data-icon="search" href="jogos.html" data-role="button">jogos</a>
+                <li><a href="home.html" data-role="button">raking</a>
+                <li><a href="saldofinanceiro.html" data-role="button">financeiro</a>
+                <li><a data-icon="calendar" href="#" data-role="button">agenda</li></a>
+                <li><a data-icon="power" href="index.html" data-role="button">Sair</li></a>
+            </ul>
+        </div>
+
+        <table class='tab'>
+            <tr class="tabcab">
+                <td> Data </td>
+                <td> 1º </td>
+                <td> 2º </td>
+                <td> 3º </td>
+                <td> 4º </td>
+                <td> 5º </td>
+                <td> 6º </td>
+            </tr>
+            <?php
+
+            $result = @mysql_query("SELECT * FROM resultados where datjog > '2017-01-01' order by datjog desc");
+            while ($row = @mysql_fetch_row($result)) {
+            $datetime = $row[0];
+            $dataConvertida = date('d/m', strtotime($datetime));
+            echo "<tr class='tabcab'>
+            <td> $dataConvertida </td>
+            <td><a href='resultadodia.php?id=$row[4]&data=$row[0]' data-transition='pop'> <img class='img' src='img/foto$row[4].jpg' name='$row[4]'></a></td>
+            <td><a href='resultadodia.php?id=$row[5]&data=$row[0]' data-transition='pop'> <img class='img' src='img/foto$row[5].jpg' name='$row[5]'></a></td>
+            <td><a href='resultadodia.php?id=$row[6]&data=$row[0]' data-transition='pop'> <img class='img' src='img/foto$row[6].jpg' name='$row[6]'></a></td>
+            <td><a href='resultadodia.php?id=$row[7]&data=$row[0]' data-transition='pop'> <img class='img' src='img/foto$row[7].jpg' name='$row[7]'></a></td>
+            <td><a href='resultadodia.php?id=$row[8]&data=$row[0]' data-transition='pop'> <img class='img' src='img/foto$row[8].jpg' name='$row[8]'></a></td>
+            <td><a href='resultadodia.php?id=$row[9]&data=$row[0]' data-transition='pop'> <img class='img' src='img/foto$row[9].jpg' name='$row[9]'></a></td>
+        </tr>";
+            }
+            ?>
+        </table>
+
+
+    </section>
+    <footer data-role="footer" class="foot" data-position="fixed" data-theme="b"><aside data-role="navbar" data-grid="a">
+        <ul>
+
+        </ul>
+    </footer>
+</div>
+</body>
+</html>

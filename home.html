@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head lang="pt">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/estilohome.css">
+    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+    <script src="js/jquery-1.12.0.min.js"></script>
+    <script src="js/jquery.mobile-1.4.5.min.js"></script>
+    <title>Poker PB</title>
+</head>
+<body>
+<div data-role="page" class="paget">
+    <header data-role="header" data-position="fixed">
+        <div class="fundoCab">
+            <div class="linkmenu">
+                <a href="#painelarea" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets ui-btn-icon-notext "></a>
+            </div>
+            <div class="fotolog">
+                <form method="post" action="auxjogadores.php">
+                    <!--<input type="image" value="<?=$idjog?>" name="cadjog" src="img/foto<?=$arrayfoto[$idjog];?>.jpg"/>-->
+                </form>
+            </div>
+            <div class="titCab">
+                Rating
+            </div>
+            <div class="logocab">
+                <img src="img/fundocab.png">
+            </div>
+        </div>
+    </header>
+    <section>
+        <div data-role="panel" id="painelarea" data-display="overlay" data-position="left">
+            <ul>
+                <li><a data-icon="home" href="home.html" data-role="button">teste</a></li>
+                <li><a data-icon="search" href="jogos.php" data-role="button">jogos</a></li>
+                <li><a data-icon="edit" href="saldofinanceiro.html" data-role="button"/>financeiro</a></li>
+                <li><a data-icon="calendar" href="jogos.html" data-role="button">agenda</a></li>
+                <li><a data-icon="gear" href="jogos.html" data-role="button">configurações</a></li>
+                <li><a data-icon="power" href="index.html" data-role="button">Sair</a></li>
+            </ul>
+        </div>
+        <!--
+        <?php
+        echo "<table class='tab' cellpadding='5' cellspacing='0'>";
+        $result = @mysql_query("SELECT * FROM pontosjogador where anojog = 2017 and perano = 1 order by score desc");
+        while($row = @mysql_fetch_array($result, MYSQL_NUM)) {
+        echo  "<tr>
+        <td><a href='parcialjogador.php?id=$row[2]' data-transition='pop'> <img class='img' src='img/foto$row[2].jpg' name='$row[2]'></td></a>
+        <td><div class='ponto'>$row[3]</td></tr>";
+        }
+        echo "</tr></table>";
+        ?>
+        -->
+    </section>
+    <footer data-role="footer" class="foot" data-position="fixed" data-theme="b"><aside data-role="navbar" data-grid="a">
+    </footer>
+</div>
+</body>
+</html>

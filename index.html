@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head lang="pt">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/estiloindex.css">
+    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+
+    <title>Poker PB</title>
+
+    <script>
+        function apresentaLogin() {
+            document.getElementById('foot').style.display='block';
+            document.getElementById('foot').style.transition='height 1s';
+            document.getElementById('logo').style.display='none';
+            document.getElementById('logoalfa').style.top='15%';
+            document.getElementById('logoalfa').style.left='40%';
+            document.getElementById('logoalfa').style.width='150px';
+            document.getElementById('logoalfa').style.height='200px';
+        }
+        function escondeLogin() {
+            document.getElementById('foot').style.display='none';
+        }
+    </script>
+</head>
+<body>
+
+<a class="logoclub" href="home.html" onclick='apresentaLogin()'> <img id="logo" src="img/logopokerindex.png"></a>
+<a class="logoclub" href="#" onclick='apresentaLogin()'> <img id="logoalfa" src="img/logopokerindexalfa.png"></a>
+
+<div id="foot">
+    
+    <form method="post" action="home.html" name="autoriza">
+        <input type="text" name="email" placeholder="email"/><br/><br/></br>
+        <input type="password" name="senha" placeholder="senha"/><br/><br/><br/>
+        <input class="sub" type="submit" name="autoriza" value="ENTRAR">
+    </form>
+</div>
+</body>
+</html>

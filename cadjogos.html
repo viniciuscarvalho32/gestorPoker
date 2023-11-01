@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head lang="pt">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+    <script src="js/jquery-1.12.0.min.js"></script>
+    <script src="js/jquery.mobile-1.4.5.min.js"></script>
+
+    <title>Jogo</title>
+
+    <style>
+        .paget {
+
+        }
+        .field {
+            text-align: center;
+            font-weight: bold;
+        }
+
+    </style>
+
+</head>
+<body>
+<div data-role="page" class="paget">
+    <header data-role="header" data-position="fixed">
+
+        <div class="titulo">
+
+            <form method="post" action="auxjogadores.php">
+                <input type="image" class="fotolog" value="<?=$idjog?>" name="cadjog" src="img/foto<?=$arrayfoto[$idjog];?>.jpg"/>
+            </form>
+            <?=$apelido?>
+            <img class="fundocab" src="img/fundocab.png">
+            <h1>Inserir Jogo</h1>
+        </div>
+
+
+        <nav data-role="navbar" data-theme="b">
+            <ul>
+                <li><a href="home.html" data-role="button" data-transition='slide' data-icon="home"> Home </a></li>
+                <li><a href="jogadores.html" data-role="button" data-transition='slide' data-icon="search"> Jogadores </a></li>
+                <li><a href="resultado.html" data-role="button" data-transition='slide' data-icon="check"> Encerrar Jogo </a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <form  method="post" action="painelcadjogos.php" enctype="multipart/form-data">
+        <div class="cad">
+            <fieldset class="field">
+                <legend>Data do Jogo</legend>
+                <input type="date" name="data">
+            </fieldset>
+            <fieldset>
+                <legend class="field"> Local </legend>
+
+                <input type="radio"
+                       name="local"
+                       value="1"
+                       id="loc1"
+                <?php echo ($localjogo == "1") ? "checked" : null; ?>/><label for="loc1">Apto 140(Vinícius)</label>
+                <input type="radio"
+                       name="local"
+                       value="2"
+                       id="loc2"
+                <?php echo ($localjogo == "2") ? "checked" : null; ?>/><label for="loc2">Apto 260(Lauro)</label>
+                <input type="radio"
+                       name="local"
+                       value="3"
+                       id="loc3"
+                <?php echo ($localjogo == "3") ? "checked" : null; ?>/><label for="loc3">Apto 410(Edno)</label>
+                <input type="radio"
+                       name="local"
+                       value="4"
+                       id="loc4"
+                <?php echo ($localjogo == "4") ? "checked" : null; ?>/><label for="loc4">Apto 430(Fabio)</label>
+                <input type="radio"
+                       name="local"
+                       value="5"
+                       id="loc5"
+                <?php echo ($localjogo == "5") ? "checked" : null; ?>/><label for="loc5">Apto 440(Jairo)</label>
+
+            </fieldset>
+            <input type="text" name="cash" placeholder="Valor da Mesa R$">
+            <fieldset>
+                <legend class="field">Observação</legend>
+                <textarea rows="10" cols="40" name="obsjog" maxlength="500" placeholder="Observação"></textarea>
+            </fieldset>
+
+            <input type="submit" name="inserir" value="Inserir">
+        </div>
+    </form>
+
+
+    <footer data-role="footer" class="encerrar" data-position="fixed" data-theme="b"><aside data-role="navbar" data-grid="d">
+        <ul>
+
+        </ul>
+    </footer>
+</div>
+
+</body>
+</html>

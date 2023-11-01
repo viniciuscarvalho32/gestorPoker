@@ -1,0 +1,62 @@
+.fundoCab {
+    display: inline-block;
+    background-color: green;
+    width: 100%;
+    color: white;
+}
+.linkmenu {
+    position: relative;
+    float: left;
+}
+.fotolog input {
+    position: absolute;
+    margin-left: 50px;
+    width: 35px;
+    height: 35px;
+    border-radius: 150px;
+    border: solid 1px;
+    box-shadow: 0px 0px 7px 3px #ffffff;
+}
+.titCab {
+    position: absolute;
+    margin-left: 200px;
+    font-size: 18px;
+}
+.logocab img {
+    position: relative;
+    float: right;
+    width: 100px;
+    opacity: 0.6;
+}
+.tab {
+    position: relative;
+    margin: auto;
+    padding: 5px;
+}
+.tab td  {
+    padding: 5px;
+    border-bottom: solid 1px rgb(232, 226, 229);
+}
+.tabcab {
+    font-weight: bold;
+    border-bottom: solid 1px;
+}
+.tabcab tr {
+    display: inline-block;
+    position: relative;
+    margin: auto;
+}
+.img {
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;
+}
+.dados {
+    display: inline;
+    border: solid 1px;
+}
+.dados1 {
+    display: inline-block;
+    float: left;
+    border: solid 1px;
+}
