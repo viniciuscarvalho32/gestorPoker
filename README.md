@@ -3,7 +3,7 @@ Aplicação para fazer gestão de Jogos de Poker estilo HomeGame
 
 ---
 
-| ## Um pouco da História ## |
+| # História # |
 ---
 Em 2016, um grupo de amigos que moravam em um mesmo condomínio se reuniu para realizar jogos semanais de Poker.
 Os resultados e a gestão financeira dos jogos eram administrados em uma planilha de Excel.
